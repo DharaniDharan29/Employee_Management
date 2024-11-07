@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React with Particles Background</title>
+
+    <!-- Include tsparticles CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.10.0/tsparticles.bundle.min.js"></script>
+
+    <style>
+      /* Style to make particles cover the entire background */
+      #tsparticles {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Ensures particles stay in the background */
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Particles Container -->
+    <div id="tsparticles"></div>
+
+    <!-- React Root -->
+    <div id="root"></div>
+
+    <!-- Main React Script -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Initialize tsparticles -->
+    <script>
+      // Ensure tsparticles is loaded when the DOM content is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        tsParticles.load("tsparticles", {
+          background: {
+            color: { value: "#ffffff" } // Set to your page's background color
+          },
+          particles: {
+            number: {
+              value: 80, // Adjusted for a balanced medium effect
+              density: { enable: true, value_area: 800 }
+            },
+            color: { value: "#000000" }, // Particle color
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: {
+              value: 5, // Set particle size to medium
+              random: true // Randomize particle size slightly for variation
+            },
+            move: {
+              enable: true,
+              speed: 1.5,
+              direction: "none",
+              out_mode: "out"
+            }
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              onClick: { enable: true, mode: "push" }
+            },
+            resize: true
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
