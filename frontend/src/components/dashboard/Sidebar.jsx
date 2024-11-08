@@ -9,6 +9,8 @@ const navItems = [
     { heading: "Attendance", route: "/dashboard/attendance" },
     { heading: "Feedback", route: "/dashboard/feedback" },
     { heading: "Overview", route: "/dashboard/overview" },
+    { heading: "Salary", route: "/dashboard/Salary" },
+
 ];
 
 const Navbar = () => {
