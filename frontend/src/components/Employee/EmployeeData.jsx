@@ -35,7 +35,7 @@ const EmployeeData = () => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          "https://employee-management-backend-kjh6.onrender.com/Em/employee-fetch"
+          "http://localhost:4242/Em/employee-fetch"
         );
         setEmployees(response.data);
         setLoading(false);
@@ -64,7 +64,7 @@ const EmployeeData = () => {
     e.preventDefault();
     console.log(recipient,subject,text);
     try {
-      const res = await axios.post("https://employee-management-backend-kjh6.onrender.com/api/send-email", {
+      const res = await axios.post("http://localhost:4242/api/send-email", {
         recipient,
         subject,
         text,

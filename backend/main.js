@@ -10,7 +10,8 @@ import cors from "cors";
 import "dotenv/config";
 import { fileURLToPath } from "url";
 import fs from "fs";
-
+import leaveApplication from "./model/leaveApplication.js";
+import boarding from "./model/boarding.js";
 const app = express();
 const PORT = process.env.PORT || 4242;
 
@@ -94,6 +95,47 @@ app.post("/api/send-email", (req, res) => {
   });
 });
 
+app.post("/api/leaves", async (req, res) => {
+
+  try {
+    const { employeeId, leaveType, startDate, endDate, reason, comments } = req.body;
+    const LeaveApplication = new leaveApplication({
+      employeeId,
+      leaveType,
+      startDate,
+      endDate,
+      reason,
+      comments
+    });
+    await LeaveApplication.save();
+    res.status(200).send({ success: true, message: "Leave added successfully!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating leave application" });
+  }
+});
+app.post("/api/onboarding", async (req, res) => {
+  try {
+    const { name, position, department, email, phone, onboardingDate, offboardingDate } = req.body;
+    const OnboardingOffboarding = new OnboardingOffboarding({
+      name,
+      position,
+      department,
+      email,
+      phone,
+      onboardingDate,
+      offboardingDate
+    });
+    await OnboardingOffboarding.save();
+    res.status(200).send({ success: true, message: "Employee onboarding/offboarding details added successfully!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating onboarding/offboarding record" });
+  }
+});
+
+
+//api/leaves
 // User creation route with file upload
 app.post("/api/users", upload.single("photo"), async (req, res) => {
   try {

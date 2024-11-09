@@ -28,12 +28,12 @@ const Dashboard = () => {
                     <UserButton />
                 </div>
 
-                {showAchievements && (
+                {/* {showAchievements && (
                     <div className="mt-4 p-4 bg-gray-100 rounded-md shadow-md">
                         <h5 className="text-lg font-semibold">Your Achievements</h5>
                         <p className="text-gray-700">Here are some recent achievements...</p>
                     </div>
-                )}
+                )} */}
             </div>
 
             <div className="m-10">

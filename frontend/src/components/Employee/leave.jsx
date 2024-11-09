@@ -45,7 +45,7 @@ const LeaveApplication = () => {
     }
 
     try {
-      const response = await axios.post("https://employee-management-backend-kjh6.onrender.com/api/leaves", formData);
+      const response = await axios.post("http://localhost:4242/api/leaves", formData);
       alert("Leave application submitted successfully!");
       // Reset form after submission
       setFormData({
