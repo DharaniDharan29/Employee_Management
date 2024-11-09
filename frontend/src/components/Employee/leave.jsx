@@ -46,8 +46,9 @@ const LeaveApplication = () => {
 
     try {
       const response = await axios.post("http://localhost:4242/api/leaves", formData);
-      alert("Leave application submitted successfully!");
-      // Reset form after submission
+      alert("LeaveApplication recorded successfully!");
+
+    // Reset form after submission
       setFormData({
         employeeId: "",
         leaveType: "",

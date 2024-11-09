@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Rating, Grid } from '@mui/material';
+import axios from 'axios';
 
 const FeedbackForm = () => {
   const [formData, setFormData] = useState({
@@ -18,13 +19,17 @@ const FeedbackForm = () => {
     setFormData({ ...formData, rating: newValue });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can replace this with an API call or other logic
-    console.log('Feedback submitted:', formData);
-    // Clear the form after submission
-    setFormData({ name: '', email: '', rating: 0, comments: '' });
-    alert('Thank you for your feedback!');
+  const handleSubmit = async(e) => {
+    try {
+      const response = await axios.post("http://localhost:4242/api/feedback", formData);
+      e.preventDefault();
+      console.log('Feedback submitted:', formData);
+      setFormData({ name: '', email: '', rating: 0, comments: '' });
+      alert('Thank you for your feedback!');
+    } catch (error) {
+      console.error("Error submitting the feedback", error);
+      alert("Failed to record feedback");
+    }
   };
 
   return (

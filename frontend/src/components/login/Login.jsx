@@ -14,7 +14,6 @@ import Attendance from '../Employee/Attendance';
 import Overview from '../Employee/overview';
 import Feedback from '../Employee/feedback';
 import Boarding from '../Employee/Boarding';
-import Salary from '../Employee/Salary';
 
 // Custom Error Component
 function ErrorPage() {
@@ -46,7 +45,6 @@ const router = createBrowserRouter(
         <Route path="/dashboard/attendance" element={<Attendance />} />
         <Route path="/dashboard/feedback" element={<Feedback />} />
         <Route path="/dashboard/Boarding" element={<Boarding />} />
-        <Route path="/dashboard/Salary" element={<Salary />} />
 
       </Route>
 

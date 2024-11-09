@@ -12,6 +12,9 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import leaveApplication from "./model/leaveApplication.js";
 import boarding from "./model/boarding.js";
+import attendance from "./model/attendance.js";
+import feedback from "./model/feedback.js";
+
 const app = express();
 const PORT = process.env.PORT || 4242;
 
@@ -133,9 +136,57 @@ app.post("/api/onboarding", async (req, res) => {
     res.status(500).json({ message: "Error creating onboarding/offboarding record" });
   }
 });
+app.post("/api/attendance", async (req, res) => {
+  try {
+    const { employeeId, date, status } = req.body;
+    const Attendance = new attendance({
+      employeeId,
+      date,
+      status
+    });
+    await Attendance.save();
+    res.status(200).send({ success: true, message: "Attendance record added successfully!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating attendance record" });
+  }
+});
 
+app.post("/api/boarding", async (req, res) => {
+  try {
+    const { name, position, department, email, phone} = req.body;
+    const Boarding = new boarding({
+      name,
+      position,
+      department,
+      email,
+      phone
+    });
+    await Boarding.save();
+    res.status(200).send({ success: true, message: "Boarding record added successfully!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating boarding record" });
+  }
+});
 
-//api/leaves
+app.post("/api/feedback", async (req, res) => {
+  try {
+    const { name, email, rating, comments} = req.body;
+    const Feedback = new feedback({
+      name,
+      email,
+      rating,
+      comments
+    });
+    await Feedback.save();
+    res.status(200).send({ success: true, message: "Boarding record added successfully!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating boarding record" });
+  }
+});
+
 // User creation route with file upload
 app.post("/api/users", upload.single("photo"), async (req, res) => {
   try {

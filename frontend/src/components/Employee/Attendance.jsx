@@ -36,7 +36,7 @@ const Attendance = () => {
     }
 
     try {
-      const response = await axios.post("https://your-api-url/attendance", formData);
+      const response = await axios.post("http://localhost:4242/api/attendance", formData);
       alert("Attendance recorded successfully!");
       fetchAttendanceRecords(); // Refresh attendance records
       setFormData({ employeeId: "", date: "", status: "Present" }); // Reset form
@@ -49,7 +49,7 @@ const Attendance = () => {
 
   const fetchAttendanceRecords = async () => {
     try {
-      const response = await axios.get("https://your-api-url/attendance");
+      const response = await axios.get("http://localhost:4242/api/attendance");
       setAttendanceRecords(response.data);
       filterLeaveRecords(response.data); // Filter leaves after fetching
     } catch (error) {

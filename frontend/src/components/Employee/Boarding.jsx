@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, TextField, Container, Grid } from '@mui/material';
+import axios from 'axios';
 
 const EmployeeManagement = () => {
   const [isOnboarding, setIsOnboarding] = useState(null);
@@ -48,16 +49,24 @@ const Onboarding = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Onboarding data submitted:', formData);
-    setFormData({
-      name: '',
-      position: '',
-      department: '',
-      email: '',
-      phone: '',
-    });
+  const handleSubmit = async(e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post("http://localhost:4242/api/boarding", formData);
+      console.log('Onboarding data submitted:', formData);
+      alert("Boarding recorded successfully!");
+
+      setFormData({
+        name: '',
+        position: '',
+        department: '',
+        email: '',
+        phone: '',
+      });
+    } catch (error) {
+      console.error("Error submitting the form", error);
+      alert("Failed to record boarding");
+    }
   };
 
   return (
